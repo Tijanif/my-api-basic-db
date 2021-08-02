@@ -3,10 +3,14 @@ const morgan = require('morgan');
 
 const app = express();
 
+const productsRouter = require('./resources/products/router');
+
 // Middleware
 app.use(morgan('dev'));
 
 // Routes
+
+app.use('/products', productsRouter);
 
 app.get('*', (req, res) => {
   res.json({ msg: 'ok' });
