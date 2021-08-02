@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 
 const app = express();
-
+const databaseClient = require('./utilities/database');
 const productsRouter = require('./resources/products/router');
 
 // Middleware
@@ -19,5 +19,12 @@ app.get('*', (req, res) => {
 // Run Server
 
 app.listen(4000, () => {
+  databaseClient.connect((error) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Database is connected');
+    }
+  });
   console.log('App is running on server 4000');
 });
