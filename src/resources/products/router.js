@@ -7,9 +7,17 @@ productsRouter.get('/', (req, res) => {
 });
 
 productsRouter.get('/:id', (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
 
   res.json({ ID: `More than you can buy! ${id}` });
+});
+
+productsRouter.post('/', (req, res) => {
+  const newProduct = req.body;
+
+  // create a new product
+
+  res.json({ product: newProduct });
 });
 
 module.exports = productsRouter;
